@@ -26,7 +26,7 @@
               <h6> Channel {{n+1}} </h6>
             <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-8" id={{n+1}}>
+                  <div class="col-sm-8">
                        <style>
                        .color {
                        width:500px;
@@ -36,7 +36,7 @@
                        }
                        </style>
                   </div>
-                  <div class="color" style="--color: {{ color }}"></div>
+                  <div class="color" style="--color: {{ color }}" id={{n}}></div>
                 <div class="col-sm-4 text-center my-auto">
                   <div class="mb-0 text-primary">
                     <h4>{{state}}</h4>
@@ -65,14 +65,27 @@
       var intervalID = window.setInterval(update_colors, 500);
       const update_url = {{ url_for("update")|tojson }}
 
+      // This function will fetch data from backend and then change the html template
       function update_colors() {
         fetch(update_url)
             .then(response => response.json())
-            .then(text => console.log(text["data"]) || $("#update_result").text(text["data"])) // get the colors (not working yet)
+            .then(set_colors) // get the colors (not working yet)
 
             // .then(text => $("update_result").text(text))
             // .then(response => response.text)
             // .then(text => geology_div.innerHtml = text)
+      }
+
+      // This function defines how the colors are changed in the html template after receiving data
+      function set_colors(json) {
+        var n = 0;
+        var colors = json["data"];
+
+        for (n; n < 5; n++) {
+          console.log(colors[n]);
+          $("#" + n).css("background-color", colors[n]);
+          //$("#" + n).style.background-color(colors[n]); // Might need to convert n to str
+        }
       }
     </script>
   </div>
