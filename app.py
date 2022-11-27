@@ -1,16 +1,17 @@
 from flask import Flask, render_template,abort
-from jinja2 import Environment, FileSystemLoader
 
 app = Flask(__name__)
 
-# Variables for Jinja
+# Variables
+# Add the hue depending on confidence
+# Change to hex codes
 s_and_c = [("Focused","green"), ("Unfocused", "orange"), ("Drowsy", "lightblue")]
-
-environment = Environment(loader=FileSystemLoader("templates/"))
-template = environment.get_template("dashboard.html")
 
 # Python Flask stuff
 @app.route('/')
 def index():
-    state, color = s_and_c[2]
-    return render_template("dashboard.html", color=color, state=state)
+    """
+    Renders the starter template where the color is white and there are no states associated
+    with the 5 channels.
+    """
+    return render_template("dashboard.html", color="white", state="N/A", n=5)
