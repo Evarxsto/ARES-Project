@@ -62,7 +62,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </div>
     <script>
-      var intervalID = window.setInterval(update_colors, 500);
+      var intervalID = window.setInterval(update_colors, 2000);
       const update_url = {{ url_for("update")|tojson }}
 
       // This function will fetch data from backend and then change the html template
