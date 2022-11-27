@@ -23,7 +23,7 @@
         <div class="col-lg-8">
           <div class="card mb-3">
             <div class="card-header">
-              <h6> Channel {{n+1}} </h6>
+              <h6 id={{n+5}}> Channel {{n+1}} </h6>
             <div class="card-body">
                 <div class="row">
                   <div class="col-sm-8">
@@ -41,7 +41,7 @@
                   <div class="mb-0 text-primary">
                     <h4>{{state}}</h4>
                   </div>
-                  <div class="small text-muted">Confidence: </div>
+                  <div class="small text-muted">Bandpower</div>
                 </div>
                 </div>
             </div>
@@ -80,11 +80,18 @@
       function set_colors(json) {
         var n = 0;
         var colors = json["data"];
+        var labels = ["DELTA", "THETA", "ALPHA", "BETA", "GAMMA"]
 
+        // Update the colors
         for (n; n < 5; n++) {
           console.log(colors[n]);
           $("#" + n).css("background-color", colors[n]);
-          //$("#" + n).style.background-color(colors[n]); // Might need to convert n to str
+        }
+
+        n = 5
+        // Update the Labels
+        for (n; n < 10 ; n++) {
+          $("#" + n).html(labels[n-5]);
         }
       }
     </script>

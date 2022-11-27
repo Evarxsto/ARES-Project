@@ -27,7 +27,7 @@ def index():
     Renders the starter template where the color is white and there are no states associated
     with the 5 channels.
     """
-    return render_template("dashboard.html", color="white", state="N/A", n=5)
+    return render_template("dashboard.html", color="white", state="", n=5)
 
 @app.route('/update')
 def update():
